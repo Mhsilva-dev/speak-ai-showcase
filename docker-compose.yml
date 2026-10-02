@@ -1,0 +1,15 @@
+# PostgreSQL para desenvolvimento local: docker compose up -d
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: speak
+      POSTGRES_PASSWORD: speak
+      POSTGRES_DB: speak
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - speak-pg:/var/lib/postgresql/data
+      - ./scripts/init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql:ro
+volumes:
+  speak-pg:
